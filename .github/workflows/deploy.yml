@@ -1,0 +1,29 @@
+name: Deploy Reflex
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Deploy
+        uses: reflex-dev/reflex-deploy-action@v3
+        with:
+          auth_token: ${{ secrets.REFLEX_AUTH_TOKEN }}
+          project_id: ${{ secrets.REFLEX_PROJECT_ID }}

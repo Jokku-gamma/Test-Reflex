@@ -23,7 +23,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Deploy
-        uses: reflex-dev/reflex-deploy-action@v3
+        uses: reflex-dev/reflex-deploy-action@<commit-sha>
         with:
           auth_token: ${{ secrets.REFLEX_AUTH_TOKEN }}
           project_id: ${{ secrets.REFLEX_PROJECT_ID }}
